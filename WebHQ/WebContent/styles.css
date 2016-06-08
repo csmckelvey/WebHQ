@@ -1,5 +1,30 @@
-* { outline: solid 1px #0000FF; }
+* { outline: solid 0px #0000FF; }
 
 HTML, BODY {
 	background-color: #FEFEFE;
+}
+
+#header {
+	margin-bottom: 10px;
+	padding-bottom: 5px;
+	border-bottom: solid 1px #000000;
+}
+
+#topSpacer {
+	margin-top: 20px;
+}
+
+#headerText {
+	font-size: 1.2em;
+	float: right;
+	font-style: italic;
+}
+
+#headerName {
+	float: left;
+	font-size: 2em;
+}
+
+.hcenter {
+	text-align: center;	
 }
