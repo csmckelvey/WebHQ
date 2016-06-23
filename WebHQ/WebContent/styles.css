@@ -1,7 +1,16 @@
 * { outline: solid 0px #0000FF; }
 
 HTML, BODY {
-	background-color: #FEFEFE;
+	background-color: #FFFFFF;
+}
+
+TABLE {
+	width: 100%;
+}
+
+CANVAS {
+	display: block;
+	margin: auto;
 }
 
 #header {
@@ -16,15 +25,14 @@ HTML, BODY {
 
 #headerText {
 	font-size: 1.2em;
-	float: right;
+	text-align: right;
 	font-style: italic;
 }
 
 #headerName {
-	float: left;
-	font-size: 2em;
+	font-size: 2.2em;
 }
 
-.hcenter {
+.ele-center {
 	text-align: center;	
 }
