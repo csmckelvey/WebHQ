@@ -1,38 +1,63 @@
-* { outline: solid 0px #0000FF; }
+* { outline: solid 0px #FFFFFF; }
 
 HTML, BODY {
-	background-color: #FFFFFF;
+	height: 100%;
+	color: #FFFFFF;
+	padding-top: 5px;
+	font-family: 'Play', sans-serif;
 }
 
-TABLE {
-	width: 100%;
+#backgroundDiv {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 0;
+	position: fixed;
+	background-size: contain;
+	background-image: linear-gradient(to bottom, #224262 0%, #22776E 66%, #224262 100%);
 }
 
-CANVAS {
-	display: block;
+#face {
 	margin: auto;
+	border: solid 5px #FFFFFF;
 }
 
-#header {
-	margin-bottom: 10px;
-	padding-bottom: 5px;
-	border-bottom: solid 1px #000000;
+.nav-idle, .nav-hover, .nav-selected {
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+	transition: font-size 0.1s;
 }
 
-#topSpacer {
-	margin-top: 20px;
-}
-
-#headerText {
+.nav-idle {
 	font-size: 1.2em;
-	text-align: right;
-	font-style: italic;
+	border-bottom: solid 1px #A8A8A8;
 }
 
-#headerName {
-	font-size: 2.2em;
+.nav-hover {
+	cursor: pointer;
+	font-size: 1.4em;
+	border-bottom: solid 1px #FFFFFF;
+	text-shadow: -1px 0 #000000, 0 1px #000000, 1px 0 #000000, 0 -1px #000000;
 }
 
-.ele-center {
-	text-align: center;	
+.nav-selected {
+	font-size: 1.4em;
+	border-bottom: solid 1px #FFFFFF;
+}
+
+.csm-small-text {
+	font-size: 0.8em;
+}
+
+.csm-medium-text {
+	font-size: 1.1em;
+}
+
+.csm-large-text {
+	font-size: 1.75em;
+}
+
+.csm-largest-text {
+	font-size: 2.5em;
 }
