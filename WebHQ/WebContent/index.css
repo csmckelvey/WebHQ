@@ -1,4 +1,4 @@
-* { outline: solid 0px #FFFFFF; }
+/* * { outline: solid 1px #FFFFFF; } */
 
 HTML, BODY {
 	height: 100%;
@@ -12,10 +12,18 @@ HTML, BODY {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	z-index: 0;
+	z-index: -1;
 	position: fixed;
 	background-size: contain;
 	background-image: linear-gradient(to bottom, #224262 0%, #22776E 66%, #224262 100%);
+}
+
+#preambleDiv {
+	margin-bottom: 20px;
+}
+
+#projectsDiv {
+	
 }
 
 #face {

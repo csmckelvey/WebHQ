@@ -19,6 +19,11 @@ function init() {
 	navigationTabs.push($("#nav-projects"));
 	navigationTabs.push($("#nav-resume"));
 	navigationTabs.push($("#nav-contact"));
+	
+	$("#projectsDiv").slideUp(0);
+	$("#resumeDiv").slideUp(0);
+	$("#contactDiv").slideUp(0);
+	$("#preambleDiv #row5").slideUp(0);
 }
 
 function initLinkClickHandlers() {
@@ -54,6 +59,7 @@ function handleLinkClick(ele) {
 	for (var i = 0; i < navigationTabs.length; i++) {
 		tmp = navigationTabs[i].parent();
 		
+		tmp.removeClass("nav-idle");
 		tmp.removeClass("nav-hover");
 		tmp.removeClass("nav-selected");
 		
@@ -61,9 +67,48 @@ function handleLinkClick(ele) {
 			tmp.addClass("nav-idle");
 		}
 		else {
-			tmp.addClass("nav-selected");
+			if (elementId !== "nav-home") {
+				tmp.addClass("nav-selected");
+			}
+			else {
+				tmp.addClass("nav-idle");
+			}
 		}
 	}
+	
+	if (elementId !== "nav-home") {
+		$("#preambleDiv #row1").slideUp(slideTime);
+		$("#preambleDiv #row3").slideUp(slideTime);
+		$("#preambleDiv #row5").slideDown(slideTime);
+	}
+	else {
+		$("#preambleDiv #row1").slideDown(slideTime);
+		$("#preambleDiv #row3").slideDown(slideTime);
+		$("#preambleDiv #row5").slideUp(slideTime);
+	}
+	
+	if (elementId === "nav-projects") {
+		$("#projectsDiv").slideDown(slideTime);
+	}
+	else {
+		$("#projectsDiv").slideUp(slideTime);
+	}
+	
+	if (elementId === "nav-resume") {
+		$("#resumeDiv").slideDown(slideTime);
+	}
+	else {
+		$("#resumeDiv").slideUp(slideTime);
+	}
+	
+	if (elementId === "nav-contact") {
+		$("#contactDiv").slideDown(slideTime);
+	}
+	else {
+		$("#contactDiv").slideUp(slideTime);
+	}
+	
+	
 }
 
 function introAnimation() {
