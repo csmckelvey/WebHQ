@@ -1,42 +1,39 @@
 var debug = true;
-var homeShown = false;
+var homeShown = true;
 
 var slideTime = 700;
-var toggleTime = 700;
-var animationTime = 300;
-
-var parent3Height = 0;
-var logPrefix = "[*WebHQ*]";
 var navigationTabs = [];
+var logPrefix = "[*WebHQ*]";
 
-$(document).ready(function(){
-	init();
-	initLinkClickHandlers();
-});
+var homeTab;
+var resumeTab;
+var projectsTab;
+var connectTab;
+var currentOpenTab = null;
 
-function init() {
-	navigationTabs.push($("#nav-home"));
-	navigationTabs.push($("#nav-projects"));
-	navigationTabs.push($("#nav-resume"));
-	navigationTabs.push($("#nav-contact"));
-	
-	$("#projectsDiv").slideUp(0);
-	$("#resumeDiv").slideUp(0);
-	$("#contactDiv").slideUp(0);
-	$("#preambleDiv #row5").slideUp(0);
-}
-
-function initLinkClickHandlers() {
-	var tmp;
-	for (var i = 0; i < navigationTabs.length; i++) {
-		tmp = navigationTabs[i];
-		tmp.click(function(){ handleLinkClick($(this)); });
-		tmp.mouseout(function() { handleLinkHoverOut($(this)); });
-		tmp.mouseover(function() { handleLinkHoverIn($(this)); });
+function handleHome() {
+	if (!homeShown) {
+		currentOpenTab.slideUp(slideTime);
+		handleNavTabs("");
+		showHome();
 	}
 }
 
-function handleLinkHoverIn(ele) {
+function handleClick(navElementId, divElementId) {
+	handleNavTabs(navElementId);
+
+	if (currentOpenTab == null) { 
+		hideHome(); 
+		currentOpenTab = $("#"+divElementId);
+		currentOpenTab.slideDown(slideTime);
+	}
+	else { 
+		closeOpenTab(divElementId);
+	}
+
+}
+
+function handleHoverIn(ele) {
 	var tmp = ele.parent();
 	tmp.addClass("nav-hover");
 	if (!tmp.hasClass("nav-selected")) {
@@ -44,7 +41,7 @@ function handleLinkHoverIn(ele) {
 	}
 }
 
-function handleLinkHoverOut(ele) {
+function handleHoverOut(ele) {
 	var tmp = ele.parent();
 	tmp.removeClass("nav-hover");
 	if (!tmp.hasClass("nav-selected")) {
@@ -52,18 +49,50 @@ function handleLinkHoverOut(ele) {
 	}
 }
 
-function handleLinkClick(ele) {
+function handleKeys(event, element) {
+	if(event.keyCode === 13){
+		element.click();
+	}
+}
+
+function closeOpenTab(elementIdToOpen) {
+	if (currentOpenTab != null) {
+		currentOpenTab.slideUp(slideTime, function() {
+			currentOpenTab = $("#"+elementIdToOpen);
+			currentOpenTab.slideDown(slideTime);
+		});
+	}
+}
+
+function showHome() {
+	homeShown = true;
+	currentOpenTab = null;
+	$("#preambleDiv #row1").slideDown(slideTime);
+	$("#preambleDiv #row3").slideDown(slideTime);
+	$("#preambleDiv #row5").slideUp(slideTime);
+}
+
+function hideHome() {
+	homeShown = false;
+	$("#preambleDiv #row1").slideUp(slideTime);
+	$("#preambleDiv #row3").slideUp(slideTime);
+	$("#preambleDiv #row5").slideDown(slideTime);
+}
+
+function handleNavTabs(elementId) {
 	var tmp;
-	var elementId = ele.attr("id");
-	
+	var currentId;
+	var currentTab;
 	for (var i = 0; i < navigationTabs.length; i++) {
-		tmp = navigationTabs[i].parent();
+		currentTab = navigationTabs[i];
+		currentId = currentTab.attr("id");
+		tmp = currentTab.parent();
 		
 		tmp.removeClass("nav-idle");
 		tmp.removeClass("nav-hover");
 		tmp.removeClass("nav-selected");
 		
-		if (navigationTabs[i].attr("id") !== elementId) {
+		if (currentId !== elementId) {
 			tmp.addClass("nav-idle");
 		}
 		else {
@@ -75,70 +104,21 @@ function handleLinkClick(ele) {
 			}
 		}
 	}
-	
-	if (elementId !== "nav-home") {
-		$("#preambleDiv #row1").slideUp(slideTime);
-		$("#preambleDiv #row3").slideUp(slideTime);
-		$("#preambleDiv #row5").slideDown(slideTime);
-	}
-	else {
-		$("#preambleDiv #row1").slideDown(slideTime);
-		$("#preambleDiv #row3").slideDown(slideTime);
-		$("#preambleDiv #row5").slideUp(slideTime);
-	}
-	
-	if (elementId === "nav-projects") {
-		$("#projectsDiv").slideDown(slideTime);
-	}
-	else {
-		$("#projectsDiv").slideUp(slideTime);
-	}
-	
-	if (elementId === "nav-resume") {
-		$("#resumeDiv").slideDown(slideTime);
-	}
-	else {
-		$("#resumeDiv").slideUp(slideTime);
-	}
-	
-	if (elementId === "nav-contact") {
-		$("#contactDiv").slideDown(slideTime);
-	}
-	else {
-		$("#contactDiv").slideUp(slideTime);
-	}
-	
-	
 }
 
-function introAnimation() {
-	var rows = [];
-	var parents = [];
-	
-	rows.push($("#preamble-row-2"));
-	rows.push($("#preamble-row-3"));
-	rows.push($("#preamble-row-4"));
-	
-	parents.push($("#preamble-row-2-parent"));
-	parents.push($("#preamble-row-3-parent"));
-	parents.push($("#preamble-row-4-parent"));
-	
-	//Set fixed height to parents' current height so the animation doesn't move content all over the page
-	for (var i = 0; i < parents.length; i++) {
-		parents[i].css({ "height" : (parents[i].height())});
-	}
-	
-	//Hide all rows involved in animation
-	for (var j = 0; j < rows.length; j++) {
-		rows[j].slideUp(0, "linear");
-	}
-	
-	//Start animation chain - no generic loop here as the animations might be customized
-	rows[0].slideDown(animationTime, "linear", function() {
-		rows[1].slideDown(animationTime, "linear", function() {
-			rows[2].slideDown(animationTime, "linear");
-		});
-	});
+function toggleProject(spanId, panelId) {
+	 var element = $(panelId);
+	 var glyphSpan = $(spanId);
+	 if (glyphSpan.hasClass("glyphicon-collapse-down")) {
+		 glyphSpan.removeClass("glyphicon-collapse-down");
+		 glyphSpan.addClass("glyphicon-collapse-up");
+		 element.slideDown(slideTime);
+	 }
+	 else {
+		 glyphSpan.removeClass("glyphicon-collapse-up");
+		 glyphSpan.addClass("glyphicon-collapse-down");
+		 element.slideUp(slideTime);
+	 }
 }
 
 function log(level, message) {
@@ -156,3 +136,86 @@ function log(level, message) {
 		console.log(logPrefix + " " + levelString + " " + message);
 	}
 }
+
+function init() {
+	$("#resumeDiv").slideUp(0);
+	$("#connectDiv").slideUp(0);
+	$("#projectsDiv").slideUp(0);
+	$("#preambleDiv #row5").slideUp(0);
+
+	$("#project-website").slideUp(0);
+	$("#project-computer").slideUp(0);
+	$("#project-pi").slideUp(0);
+	$("#project-vr").slideUp(0);
+	
+	homeTab = $("#nav-home");
+	resumeTab = $("#nav-resume");
+	connectTab = $("#nav-connect");
+	projectsTab = $("#nav-projects");
+	
+	navigationTabs.push(homeTab);
+	navigationTabs.push(resumeTab);
+	navigationTabs.push(connectTab);
+	navigationTabs.push(projectsTab);
+}
+
+$(document).ready(function(){
+	init();
+	
+	homeTab.click(function() { handleHome(); });
+	homeTab.keyup(function(event) { handleKeys(event, this); });
+	homeTab.mouseout(function() { handleHoverOut(homeTab); });
+	homeTab.mouseover(function() { handleHoverIn(homeTab); });
+	
+	connectTab.keyup(function(event) { handleKeys(event, this); });
+	connectTab.mouseout(function() { handleHoverOut(connectTab); });
+	connectTab.mouseover(function() { handleHoverIn(connectTab); });
+	connectTab.click(function() { handleClick("nav-connect", "connectDiv"); });
+	
+	resumeTab.keyup(function(event) { handleKeys(event, this); });
+	resumeTab.mouseout(function() { handleHoverOut(resumeTab); });
+	resumeTab.mouseover(function() { handleHoverIn(resumeTab); });
+	resumeTab.click(function() { handleClick("nav-resume", "resumeDiv"); });
+	
+	projectsTab.keyup(function(event) { handleKeys(event, this); });
+	projectsTab.mouseout(function() { handleHoverOut(projectsTab); });
+	projectsTab.mouseover(function() { handleHoverIn(projectsTab); });
+	projectsTab.click(function() { handleClick("nav-projects", "projectsDiv"); });
+	
+	$("#project-pi-toggle").click(function() { toggleProject('#project-pi-toggle', '#project-pi'); });
+	$("#project-vr-toggle").click(function() { toggleProject('#project-vr-toggle', '#project-vr'); });
+	$("#project-website-toggle").click(function() { toggleProject('#project-website-toggle', '#project-website'); });
+	$("#project-computer-toggle").click(function() { toggleProject('#project-computer-toggle', '#project-computer'); });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

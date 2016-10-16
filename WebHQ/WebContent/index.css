@@ -1,10 +1,63 @@
-/* * { outline: solid 1px #FFFFFF; } */
+* { outline: solid 0px #FFFFFF; }
 
 HTML, BODY {
 	height: 100%;
 	color: #FFFFFF;
 	padding-top: 5px;
+	overflow-y: scroll;
 	font-family: 'Play', sans-serif;
+}
+
+A {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+A.connectLink {
+	font-size: 4em;
+}
+
+A:hover, A:active {
+	color: #FFFFFF;
+	text-decoration: none;
+	border-bottom: solid 1px #FFFFFF;
+}
+
+A.connectLink:hover, A.connectLink:active {
+	font-size: 4em;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+	border-bottom: solid 2px #FFFFFF;
+	text-shadow: -1px 0 #000000, 0 1px #000000, 1px 0 #000000, 0 -1px #000000;
+}
+
+*:focus {
+	outline: none;
+	border: dotted 1px #FFFFFF;
+}
+
+A:focus {
+	outline: none;
+	color: #FFFFFF;
+	padding-left: 10px;
+	padding-right: 10px;
+	text-decoration: none;
+	border: dotted 1px #FFFFFF;
+}
+
+A.connectLink:focus {
+	font-size: 4em;
+}
+
+::-webkit-scrollbar {
+	width: 2px;
+	background-image: linear-gradient(to bottom, #224262 0%, #22776E 66%, #224262 100%);
+}
+
+::-webkit-scrollbar-thumb {
+	background: #FFFFFF;
 }
 
 #backgroundDiv {
@@ -22,8 +75,12 @@ HTML, BODY {
 	margin-bottom: 20px;
 }
 
-#projectsDiv {
-	
+#projectsDiv HR {
+	margin-bottom: 5px !important;
+}
+
+#projectsDiv .glyphicon {
+	font-size: 1.5em;
 }
 
 #face {
@@ -32,9 +89,9 @@ HTML, BODY {
 }
 
 .nav-idle, .nav-hover, .nav-selected {
+	transition: font-size 0.1s;
 	border-bottom-left-radius: 7px;
 	border-bottom-right-radius: 7px;
-	transition: font-size 0.1s;
 }
 
 .nav-idle {
@@ -52,6 +109,20 @@ HTML, BODY {
 .nav-selected {
 	font-size: 1.4em;
 	border-bottom: solid 1px #FFFFFF;
+}
+
+.csm-panel {
+	font-size: 1.1em;
+	padding-top: 20px;
+	border-radius: 7px;
+	margin-bottom: 40px;
+	padding-bottom: 20px;
+	border: solid 1px #FFFFFF;
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+.italic {
+	font-style: italic;
 }
 
 .csm-small-text {
