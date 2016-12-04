@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!-- The above 3 meta tags MUST come first -->
+
+		<title>csmckelvey.com</title>
+
+		<script src="../js/csm-google-analytics.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+		<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+		
+		<link rel="icon" type="image/png" href="../images/logo_site.png"/>
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Play" />
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" />
+
+		<script src="../js/global.js"></script>
+		<link rel="stylesheet" href="../css/global.css">
+		<link rel="stylesheet" href="../css/project.css">
+		<link rel="stylesheet" href="../css/gateway.css">
+	</head>
+
+	<body>
+		<div id="backgroundDiv"></div>
+		<div class="container-fluid">
+			<div class="row header">
+				<div class="col-sm-12 text-center">
+					[ HTML5 Form ]
+				</div>
+			</div>
+			<br />
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="text-center">
+						<button class="btn btn-default" role="button" onclick="returnToDashboard();">
+							<span class="glyphicon glyphicon-circle-arrow-left"></span> &nbsp; Return To Dashboard
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<hr />
+			</div>
+		</div>
+		<div class="container-fluid" id="gatewayDiv">
+			<div class="row">
+				<div class="col-sm-2"></div>
+				<div class="col-sm-8">
+					<div class="csm-outer-panel csm-panel-dark">
+						<div class="container-fluid">
+							<div class="row text-center" id="project-website">
+								<div class="col-sm-12">
+									<div class="csm-inner-panel csm-panel-light">
+										<div class="gatewayContent html5form">
+											<div class="csm-inner-panel csm-panel-dark border-white">
+												<span class="bold">You can create rich content with HTML alone.</span><br />Here is a form created with only HTML 5 form elements and built in validations.
+											</div>
+											<br /><br />
+											<form>
+												<table>
+													<tr>
+														<td style="width: 30%;">
+															<span style="color: #FF0000;">*</span> First Name<br /> <span style="font-size: 0.7em;" class="italic">Min 2, Max 25</span>
+														</td>
+														<td style="width: 70%;">
+															<input type="text" placeholder="First Name" pattern=".{2,25}" maxlength="25" class="form-control" required autofocus />
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<span style="color: #FF0000;">*</span> Last Name<br /> <span style="font-size: 0.7em;" class="italic">Min 2, Max 25</span>
+														</td>
+														<td>
+															<input type="text" placeholder="Last Name" pattern=".{2,25}" maxlength="25" required class="form-control" />
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<span style="color: #FF0000;">*</span> Email
+														</td>
+														<td>
+															<input type="email" placeholder="Email" required class="form-control" />
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<span style="color: #FF0000;">*</span> Password<br /> 
+															<span style="font-size: 0.7em;" class="italic">
+																Min 8<br />1 Number<br />
+																1 Upper &amp; 1 Lower<br />
+																1 Special Character
+															</span>
+														</td>
+														<td>
+															<input type="password" placeholder="Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}" required class="form-control" />
+															<br />
+															<input type="password" placeholder="Confirm" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}" required class="form-control" />
+														</td>
+													</tr>
+													<tr>
+														<td>Birthday</td>
+														<td><input type="date" class="form-control" /></td>
+													</tr>
+													<tr>
+														<td>Phone Number<br /> <span style="font-size: 0.7em;" class="italic">10 Digits Only</span></td>
+														<td><input type="tel" pattern="[0-9]{10}" placeholder="Phone #" class="form-control" /></td>
+													</tr>
+													<tr>
+														<td>Favorite Color</td>
+														<td><input type="color" class="form-control" style="width: 80%; margin: auto;" /></td>
+													</tr>
+													<tr>
+														<td>Gender</td>
+														<td>
+															<table style="width: 100%;">
+																<tr>
+																	<td><label><input type="radio" name="testradio">&nbsp;&nbsp;&nbsp;Male</label></td>
+																	<td><label><input type="radio" name="testradio">&nbsp;&nbsp;&nbsp;Female</label></td>
+																	<td><label><input type="radio" name="testradio">&nbsp;&nbsp;&nbsp;Wink, Wink</label></td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+													<tr>
+														<td>Favorite Languages</td>
+														<td>
+															<table style="width: 100%;">
+																<tr>
+																	<td><label><input type="checkbox">&nbsp;&nbsp;&nbsp;C++</label></td>
+																	<td><label><input type="checkbox">&nbsp;&nbsp;&nbsp;Java</label></td>
+																	<td><label><input type="checkbox">&nbsp;&nbsp;&nbsp;Perl</label></td>
+																</tr>
+																<tr>
+																	<td><label><input type="checkbox">&nbsp;&nbsp;&nbsp;C</label></td>
+																	<td><label><input type="checkbox">&nbsp;&nbsp;&nbsp;Python</label></td>
+																	<td><label><input type="checkbox">&nbsp;&nbsp;&nbsp;Haskell</label></td>
+																</tr>
+																<tr>
+																	<td><label><input type="checkbox">&nbsp;&nbsp;&nbsp;Go</label></td>
+																	<td><label><input type="checkbox">&nbsp;&nbsp;&nbsp;Ruby</label></td>
+																	<td><label><input type="checkbox">&nbsp;&nbsp;&nbsp;Fortran</label></td>
+																</tr>
+																<tr>
+																	<td><label><input type="checkbox">&nbsp;&nbsp;&nbsp;R</label></td>
+																	<td><label><input type="checkbox">&nbsp;&nbsp;&nbsp;Prolog</label></td>
+																	<td><label><input type="checkbox">&nbsp;&nbsp;&nbsp;Cobol</label></td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+												</table>
+												<br />
+												<button type="submit" class="btn btn-lg btn-default">Submit</button>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-2"></div>
+			</div>
+		</div>
+	</body>
+
+</html>

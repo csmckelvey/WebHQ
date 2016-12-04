@@ -1,15 +1,18 @@
-var debug = true;
-var homeShown = true;
-
 var slideTime = 700;
+var homeShown = true;
 var navigationTabs = [];
-var logPrefix = "[*WebHQ*]";
 
 var homeTab;
 var resumeTab;
-var projectsTab;
 var connectTab;
+var projectsTab;
 var currentOpenTab = null;
+
+function navigateToPage(pageName) {
+	sessionStorage.currentTab = currentOpenTab.attr("id");
+	sessionStorage.currentScoll = $("#"+sessionStorage.currentTab).scrollTop();
+	window.location.href = pageName;
+}
 
 function handleHome() {
 	if (!homeShown) {
@@ -57,26 +60,39 @@ function handleKeys(event, element) {
 
 function closeOpenTab(elementIdToOpen) {
 	if (currentOpenTab != null) {
-		currentOpenTab.slideUp(slideTime, function() {
-			currentOpenTab = $("#"+elementIdToOpen);
-			currentOpenTab.slideDown(slideTime);
-		});
+		if (currentOpenTab.attr('id') !== elementIdToOpen) {
+			currentOpenTab.slideUp(slideTime, function() {
+				currentOpenTab = $("#"+elementIdToOpen);
+				currentOpenTab.slideDown(slideTime);
+			});			
+		}
 	}
 }
 
 function showHome() {
 	homeShown = true;
 	currentOpenTab = null;
-	$("#preambleDiv #row1").slideDown(slideTime);
-	$("#preambleDiv #row3").slideDown(slideTime);
-	$("#preambleDiv #row5").slideUp(slideTime);
+	$("#homeDiv #row1").slideDown(slideTime);
+	$("#homeDiv #row3").slideDown(slideTime);
+	$("#homeDiv #row5").slideUp(slideTime);
+	
+	sessionStorage.removeItem("currentTab");
+	sessionStorage.removeItem("currentScoll");
 }
 
-function hideHome() {
+function hideHome(instant) {
 	homeShown = false;
-	$("#preambleDiv #row1").slideUp(slideTime);
-	$("#preambleDiv #row3").slideUp(slideTime);
-	$("#preambleDiv #row5").slideDown(slideTime);
+	var tmpTime = slideTime;
+	
+	if (instant == true) {
+		slideTime = 0;
+	}
+	
+	$("#homeDiv #row1").slideUp(slideTime);
+	$("#homeDiv #row3").slideUp(slideTime);
+	$("#homeDiv #row5").slideDown(slideTime);
+	
+	slideTime = tmpTime;
 }
 
 function handleNavTabs(elementId) {
@@ -121,32 +137,11 @@ function toggleProject(spanId, panelId) {
 	 }
 }
 
-function log(level, message) {
-	if (debug) {
-		var levelString;
-		
-		switch(level) {
-			case 1:  levelString = "INFO "; break;
-			case 2:  levelString = "WARN "; break;
-			case 3:  levelString = "DEBUG"; break;
-			case 4:  levelString = "ERROR"; break;
-			default: levelString = "INFO "; break;
-		}
-		
-		console.log(logPrefix + " " + levelString + " " + message);
-	}
-}
-
 function init() {
 	$("#resumeDiv").slideUp(0);
 	$("#connectDiv").slideUp(0);
 	$("#projectsDiv").slideUp(0);
-	$("#preambleDiv #row5").slideUp(0);
-
-	$("#project-website").slideUp(0);
-	$("#project-computer").slideUp(0);
-	$("#project-pi").slideUp(0);
-	$("#project-vr").slideUp(0);
+	$("#homeDiv #row5").slideUp(0);
 	
 	homeTab = $("#nav-home");
 	resumeTab = $("#nav-resume");
@@ -182,10 +177,16 @@ $(document).ready(function(){
 	projectsTab.mouseover(function() { handleHoverIn(projectsTab); });
 	projectsTab.click(function() { handleClick("nav-projects", "projectsDiv"); });
 	
-	$("#project-pi-toggle").click(function() { toggleProject('#project-pi-toggle', '#project-pi'); });
-	$("#project-vr-toggle").click(function() { toggleProject('#project-vr-toggle', '#project-vr'); });
-	$("#project-website-toggle").click(function() { toggleProject('#project-website-toggle', '#project-website'); });
-	$("#project-computer-toggle").click(function() { toggleProject('#project-computer-toggle', '#project-computer'); });
+	if (sessionStorage.currentTab) {
+		currentOpenTab = $("#"+sessionStorage.currentTab);
+		hideHome(true);
+		handleNavTabs("nav-" + sessionStorage.currentTab.substring(0, sessionStorage.currentTab.length-3));
+		currentOpenTab.slideDown(0);
+		
+		if (sessionStorage.currentScoll) {
+			$("#"+sessionStorage.currentTab).scrollTop(sessionStorage.currentScoll);
+		}
+	}
 });
 
 

@@ -1,0 +1,22 @@
+.nav-idle, .nav-hover, .nav-selected {
+	transition: font-size 0.1s;
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+}
+
+.nav-idle {
+	font-size: 1.2em;
+	border-bottom: solid 1px #A8A8A8;
+}
+
+.nav-hover {
+	cursor: pointer;
+	font-size: 1.4em;
+	border-bottom: solid 1px #FFFFFF;
+	text-shadow: -1px 0 #000000, 0 1px #000000, 1px 0 #000000, 0 -1px #000000;
+}
+
+.nav-selected {
+	font-size: 1.4em;
+	border-bottom: solid 1px #FFFFFF;
+}

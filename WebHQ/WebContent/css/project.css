@@ -1,0 +1,75 @@
+@media (max-width: 500px) {
+    #projectsDiv IMG {
+		margin-top: 20px;
+	}
+}
+
+#projectsDiv HR {
+	margin-top: 5px !important;
+	margin-bottom: 5px !important;
+}
+
+#projectsDiv #leftColumn {
+	padding-right: 30px;
+}
+
+#projectsDiv #rightColumn {
+	padding-left: 30px;
+}
+
+.projectTitle DIV:nth-child(1) {
+	font-size: 2em;
+}
+
+.projectTitle DIV:nth-child(2) {
+	font-size: 1.2em;
+}
+
+.projectTitle DIV:nth-child(3) {
+	font-size: 1em;
+}
+
+#project-computer #specTable, 
+#project-computer #specTable TR, 
+#project-computer #specTable TD {
+	margin: auto;
+	padding: 10px;
+	color: #000000;
+	background-color: #FFFFFF;
+	border: solid 1px #000000;	
+	border-collapse: collapse;
+}
+
+#project-computer #specTable A {
+	border: 0px;
+	color: #000000;
+	text-decoration: underline;
+}
+
+#project-computer #specTable A:hover {
+	outline: none !important;
+	border-top: dotted 1px #000000 !important;
+	border-bottom: dotted 1px #000000 !important;
+}
+
+#project-computer #specTable A:focus {
+	outline: none !important;
+	border: dotted 1px #000000 !important;
+}
+
+#project-computer IMG {
+	width: 95%;
+	border: solid 10px #FFFFFF;
+}
+
+#project-computer .computerCaption {
+	width: 95%;
+	padding-bottom: 10px;
+	color: #000000;
+	font-weight: bold;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	margin-bottom: 50px;
+	background: #FFFFFF;
+}

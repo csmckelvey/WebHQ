@@ -1,0 +1,36 @@
+.header {
+	font-size: 2em;
+}
+
+#gatewayDiv {
+	height: 86%;
+	overflow-y: scroll;
+}
+
+#projectsDiv, #resumeDiv, #connectDiv {
+	overflow-y: auto;
+}
+
+.gatewayContent {
+	width: 80%; 
+	margin: auto;
+}
+
+.html5form TABLE {
+	width: 80%;
+	margin: auto;
+}
+
+.html5form TABLE, TR, TD {
+	padding: 12px;
+	color: #000000;
+	text-align: left;
+	font-weight: bold;
+	border: solid 1px #ECECEC;
+	background-color: #FFFFFF;
+	border-collapse: collapse;
+}
+
+.html5form TD > TABLE TD {
+	border-color: #FFFFFF;
+}
