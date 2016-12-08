@@ -37,7 +37,7 @@
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="text-center">
-						<button class="btn btn-default" role="button" onclick="returnToDashboard();">
+						<button type="button" class="btn btn-default" onclick="returnToDashboard();">
 							<span class="glyphicon glyphicon-circle-arrow-left"></span> &nbsp; Return To Dashboard
 						</button>
 					</div>
@@ -65,7 +65,8 @@
 												<table>
 													<tr>
 														<td style="width: 30%;">
-															<span style="color: #FF0000;">*</span> First Name<br /> <span style="font-size: 0.7em;" class="italic">Min 2, Max 25</span>
+															<span style="color: #FF0000;">*</span> First Name<br /> 
+															<span style="font-size: 0.7em;" class="italic">Min 2, Max 25</span>
 														</td>
 														<td style="width: 70%;">
 															<input type="text" placeholder="First Name" pattern=".{2,25}" maxlength="25" class="form-control" required autofocus />
@@ -73,10 +74,11 @@
 													</tr>
 													<tr>
 														<td>
-															<span style="color: #FF0000;">*</span> Last Name<br /> <span style="font-size: 0.7em;" class="italic">Min 2, Max 25</span>
+															<span style="color: #FF0000;">*</span> Last Name<br /> 
+															<span style="font-size: 0.7em;" class="italic">Min 2, Max 25</span>
 														</td>
 														<td>
-															<input type="text" placeholder="Last Name" pattern=".{2,25}" maxlength="25" required class="form-control" />
+															<input type="text" placeholder="Last Name" pattern=".{2,25}" maxlength="25" class="form-control" required />
 														</td>
 													</tr>
 													<tr>
@@ -84,7 +86,7 @@
 															<span style="color: #FF0000;">*</span> Email
 														</td>
 														<td>
-															<input type="email" placeholder="Email" required class="form-control" />
+															<input type="email" placeholder="Email" class="form-control" required />
 														</td>
 													</tr>
 													<tr>
@@ -97,9 +99,9 @@
 															</span>
 														</td>
 														<td>
-															<input type="password" placeholder="Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}" required class="form-control" />
+															<input type="password" placeholder="Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}" class="form-control" required />
 															<br />
-															<input type="password" placeholder="Confirm" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}" required class="form-control" />
+															<input type="password" placeholder="Confirm" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}" class="form-control" required />
 														</td>
 													</tr>
 													<tr>
